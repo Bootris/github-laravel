@@ -10,6 +10,9 @@ class GitHubPopularityScoreController extends Controller
     public function getScore(Request $request)
     {
         // Validate the incoming request parameters
+
+        // dd($request);
+        
         $request->validate([
             'term' => 'required|string',
         ]);
@@ -18,7 +21,9 @@ class GitHubPopularityScoreController extends Controller
         $term = $request->input('term');
 
         // Perform a database query to retrieve the popularity score for the term
-        $score = GitHubPopularityScore::where('term', $term)->value('score');
+        $score = GitHubPopularityScore::where('term', $term);
+
+        dd($score->get());
 
         // If no score is found, return a default score of 0
         if ($score === null) {

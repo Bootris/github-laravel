@@ -8,14 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class GitHubPopularityScore extends PopularityScore
 {
-    protected $table = 'github_popularity_scores';
+    protected $table = 'git_hub_popularity_scores';
 
-    protected $fillable = [];
-    
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $this->fillable = array_merge($this->fillable, parent::$fillable);
-    }
+    protected $fillable = [
+        'term',
+        'positive_results',
+        'negative_results',
+        'total_results',
+        'score',
+    ];
 }
