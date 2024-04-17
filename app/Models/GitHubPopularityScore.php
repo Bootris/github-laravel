@@ -16,5 +16,7 @@ class GitHubPopularityScore extends PopularityScore
         'negative_results',
         'total_results',
         'score',
+        'updated_at',
+        'created_at',
     ];
 }

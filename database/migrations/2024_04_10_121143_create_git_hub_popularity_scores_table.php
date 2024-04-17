@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('negative_results')->default(0);
             $table->integer('total_results')->default(0);
             $table->float('score')->default(0);
+            $table->timestamps(); 
         });
 
 

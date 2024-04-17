@@ -16,6 +16,8 @@ class PopularityScore extends Model
         'total_results',
         'score',
         'provider',
+        'updated_at',
+        'created_at',
     ];
 
 

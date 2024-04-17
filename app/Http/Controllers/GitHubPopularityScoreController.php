@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\GitHubPopularityScore;
 
-class GitHubPopularityScoreController extends Controller
+class GitHubPopularityScoreController 
 {
     public function getScore(Request $request)
     {

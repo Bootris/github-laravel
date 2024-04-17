@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('total_results')->default(0);
             $table->float('score')->default(0);
             $table->string('provider');
+            $table->timestamps(); 
         });
 
 
