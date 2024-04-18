@@ -23,8 +23,6 @@ class GitHubPopularityScoreController
         // Perform a database query to retrieve the popularity score for the term
         $score = GitHubPopularityScore::where('term', $term);
 
-        dd($score->get());
-
         // If no score is found, return a default score of 0
         if ($score === null) {
             $score = 0;

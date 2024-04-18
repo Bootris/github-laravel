@@ -64,7 +64,7 @@ class GitHubPopularityService
             'positive_results' => $positiveResults,
             'negative_results' => $negativeResults,
             'total_results' => $totalResults,
-            'score' => $score,
+            'score' => round($score,2),
             'provider' => 'GitHub',
         ]);
     
@@ -73,7 +73,7 @@ class GitHubPopularityService
         // Return the calculated score
         return [
             'term' => $term,
-            'score' => $score,
+            'score' => round($score,2),
         ];
     }
 }
