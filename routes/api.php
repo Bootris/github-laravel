@@ -4,4 +4,4 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GitHubPopularityScoreController;
 
-Route::get('/score', [GitHubPopularityScoreController::class, 'getScore']);
+Route::middleware('auth:sanctum')->get('/score', [GitHubPopularityScoreController::class, 'getScore']);
