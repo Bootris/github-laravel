@@ -9,6 +9,11 @@ class PopularityScore extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'term',
         'positive_results',
@@ -19,7 +24,6 @@ class PopularityScore extends Model
         'updated_at',
         'created_at',
     ];
-
 
     /**
      * Scope a query to only include scores from a specific provider.

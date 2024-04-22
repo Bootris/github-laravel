@@ -31,4 +31,5 @@ return [
         ],
     ],
 
+    'provider' => env('APPLICATION_PROVIDER', 'github'),
 ];

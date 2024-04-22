@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\PopularityScoreController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GitHubPopularityScoreController;
 
-Route::middleware('auth:sanctum')->get('/score', [GitHubPopularityScoreController::class, 'getScore']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/score', [PopularityScoreController::class, 'getScore']);
+});

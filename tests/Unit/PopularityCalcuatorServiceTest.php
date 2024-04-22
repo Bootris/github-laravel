@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
 use App\Services\PopularityCalculatorService;
+use Tests\TestCase;
 
 class PopularityCalculatorServiceTest extends TestCase
 {

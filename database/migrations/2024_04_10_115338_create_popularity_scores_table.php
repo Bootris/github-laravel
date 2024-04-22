@@ -12,16 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('popularity_scores', function (Blueprint $table) {
-           
+            $table->id();
             $table->string('term');
             $table->integer('positive_results')->default(0);
             $table->integer('negative_results')->default(0);
             $table->integer('total_results')->default(0);
             $table->float('score')->default(0);
             $table->string('provider');
-            $table->timestamps(); 
+            $table->timestamps();
         });
-
 
     }
 
