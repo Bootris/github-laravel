@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Services\PopularityCalculatorService;
+use App\Services\GitHubPopularityService;
 use Tests\TestCase;
 
 class PopularityCalculatorServiceTest extends TestCase
@@ -11,7 +11,7 @@ class PopularityCalculatorServiceTest extends TestCase
     public function testCalculatePopularity()
     {
         // Instantiate the service
-        $service = new PopularityCalculatorService();
+        $service = new GitHubPopularityService();
 
         // Define test input
         $term = 'php';

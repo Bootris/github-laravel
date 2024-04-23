@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PopularityScoreRequest;
 use App\Http\Resources\PopularityScoreResource;
+use App\Interface\PopularityServiceInterface;
 use App\Models\PopularityScore;
 
 class PopularityScoreController extends Controller
 {
+    /**
+     * Construct controller class.
+     */
+    public function __construct(private PopularityServiceInterface $popularityService)
+    {
+    }
+
     /**
      * Return popularity score of provided term.
      */
@@ -22,7 +30,7 @@ class PopularityScoreController extends Controller
         // If no score is found
         if ($score === null) {
             // Call service to return populatity score
-            $score = $this->providerService->calculatePopularity($term);
+            $score = $this->popularityService->calculatePopularity($term);
         }
 
         // Return the response in JSON format
