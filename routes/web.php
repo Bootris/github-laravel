@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
 
+
 Route::controller(JobController::class)->group(function () {
     Route::get('/jobs', 'index');
     Route::get('/jobs/create', 'create');
