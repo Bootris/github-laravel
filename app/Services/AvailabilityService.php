@@ -46,6 +46,7 @@ class AvailabilityService
             sort($product['available_starttimes']);
         }
         dd($filteredData);
+
         return $filteredData;
     }
 }
