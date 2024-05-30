@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\LinkController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use App\Jobs\TranslateJob;
@@ -29,7 +30,6 @@ Route::controller(JobController::class)->group(function () {
     Route::patch('/jobs/{job}/', 'update');
     Route::delete('/jobs/{job}/', 'destroy');
 });
-//Route::resource('jobs', JobController::class);
 
 Route::view('/contact', 'contact');
 // Route::get('/contact', function () {
@@ -42,3 +42,6 @@ Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store']);
 Route::post('/logout', [SessionController::class, 'destroy']);
+
+Route::get('/links/create', [LinkController::class, 'create'])->name('links.create');
+Route::post('/links', [LinkController::class, 'store'])->name('links.store');

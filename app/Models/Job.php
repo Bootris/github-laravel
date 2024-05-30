@@ -9,19 +9,42 @@ class Job extends Model
 {
     use HasFactory;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'job_listings';
 
-    protected $guarded = [];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title', 
+        'salary', 
+        'employer_id'
+    ];
 
-    //protected $fillable = ['title', 'salary', 'employer_id'];
-
+    /**
+     * Get the employeer that owns the job.
+     */
     public function employer()
     {
         return $this->belongsTo(Employer::class);
     }
 
-    // public function tags()
-    // {
-    //     return $this->belongsToMany(Tag::class, foreignPivotKey: 'job_listing_id');
-    // }
+    /**
+     * Search for course title or subject name
+     * @param $query
+     * @param $searchTerm Course Title or Subject Name
+     * @return mixed
+     */
+    public function scopeSearch($query, $searchTerm) {
+        return $query
+            ->where('title', 'like', "%" . $searchTerm . "%")
+            ->orWhere('salary', 'like', "%" . $searchTerm . "%");
+    }
+
 }

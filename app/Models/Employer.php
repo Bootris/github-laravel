@@ -11,6 +11,15 @@ class Employer extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+    ];
+
     public function jobs(): HasMany
     {
         return $this->hasMany(Job::class);
@@ -21,5 +30,3 @@ class Employer extends Model
         return $this->belongsTo(User::class);
     }
 }
-
-//

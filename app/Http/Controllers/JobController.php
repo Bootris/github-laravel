@@ -4,16 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Mail\JobPosted;
 use App\Models\Job;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\View\View;
 
 class JobController extends Controller
 {
-    public function index()
+    public function index(Request $request): View
     {
-        $jobs = Job::with('employer')->latest()->paginate(5);
+        // Search term variable
+        $searchTerm = $request->input('search');
+
+        $jobs = Job::with('employer')
+            ->search($searchTerm)
+            ->latest()
+            ->paginate(5);
 
         return view('jobs.index', [
             'jobs' => $jobs,
@@ -40,7 +46,7 @@ class JobController extends Controller
         $job = Job::create([
             'title' => request('title'),
             'salary' => request('salary'),
-            'employer_id' => 1,
+            'employer_id' => auth()->user()->employeers->first()->id,
         ]);
 
         Mail::to($job->employer->user)->queue(
@@ -53,9 +59,10 @@ class JobController extends Controller
     public function edit(Job $job)
     {
 
-        // if ($job->employer->user->isNot(Auth::user())){
-        //     abort(403);
-        // }
+        if ($job->employer->user->isNot(Auth::user())) {
+            abort(403);
+        }
+
         return view('jobs.edit', ['job' => $job]);
     }
 
@@ -65,14 +72,7 @@ class JobController extends Controller
             'title' => ['required', 'min:3'],
             'salary' => 'required',
         ]);
-        //authorize
 
-        // update the job
-        //$job = Job::findOrFail($job);
-
-        // $job->title = request('title');
-        // $job->salary = request('salary');
-        // $job->save();
         $job->update([
             'title' => request('title'),
             'salary' => request('salary'),

@@ -24,6 +24,10 @@ class RegisteredUserController extends Controller
         ]);
         $user = User::create($attributes);
 
+        $user->employeers()->create([
+            'name' => $attributes['first_name'] . ' ' . $attributes['last_name'],
+        ]);
+
         Auth::login($user);
 
         return redirect('/jobs');
