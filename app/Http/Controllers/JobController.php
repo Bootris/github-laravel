@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Mail\JobPosted;
 use App\Models\Job;
+use App\Notifications\TestNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\View\View;
 
 class JobController extends Controller
@@ -52,6 +54,8 @@ class JobController extends Controller
         Mail::to($job->employer->user)->queue(
             new JobPosted($job)
         );
+
+        Notification::send($job->employer->user, new TestNotification());
 
         return redirect('/jobs');
     }
