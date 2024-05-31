@@ -22,9 +22,9 @@ class Job extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 
-        'salary', 
-        'employer_id'
+        'title',
+        'salary',
+        'employer_id',
     ];
 
     /**
@@ -37,14 +37,14 @@ class Job extends Model
 
     /**
      * Search for course title or subject name
-     * @param $query
-     * @param $searchTerm Course Title or Subject Name
+     *
+     * @param  $searchTerm  Course Title or Subject Name
      * @return mixed
      */
-    public function scopeSearch($query, $searchTerm) {
+    public function scopeSearch($query, $searchTerm)
+    {
         return $query
-            ->where('title', 'like', "%" . $searchTerm . "%")
-            ->orWhere('salary', 'like', "%" . $searchTerm . "%");
+            ->where('title', 'like', '%' . $searchTerm . '%')
+            ->orWhere('salary', 'like', '%' . $searchTerm . '%');
     }
-
 }

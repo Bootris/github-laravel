@@ -3,6 +3,7 @@
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SessionController;
 use App\Jobs\TranslateJob;
 use App\Models\Job;
@@ -32,10 +33,7 @@ Route::controller(JobController::class)->group(function () {
 });
 
 Route::view('/contact', 'contact');
-// Route::get('/contact', function () {
-//     return view('contact');
-// });
-// Auth
+
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
@@ -45,3 +43,5 @@ Route::post('/logout', [SessionController::class, 'destroy']);
 
 Route::get('/links/create', [LinkController::class, 'create'])->name('links.create');
 Route::post('/links', [LinkController::class, 'store'])->name('links.store');
+
+Route::get('/search', [SearchController::class, 'index']);
